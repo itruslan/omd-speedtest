@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-configmap
+  namespace: db
+  labels:
+    app: db
+data:
+  mysql-database: speedtest
+  mysql-user: speedtest

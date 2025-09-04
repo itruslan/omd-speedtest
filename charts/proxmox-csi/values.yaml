@@ -1,11 +1,10 @@
----
 proxmox-csi-plugin:
   config:
     clusters:
-      - url: https://pve.itruslan.ru:8006/api2/json
+      - url: https://pve.itruslan.ru/api2/json
         insecure: false
-        token_id: ENC[AES256_GCM,data:a3LEptDX1GDUp+aLUkwFKBeL1rHfpw==,iv:jmWW5Ufcfmc6JyRDbbQRYN3TmL0FQT0nv4i/QYjjph4=,tag:rKfv/NAUB6he4MDEUER6UA==,type:str]
-        token_secret: ENC[AES256_GCM,data:wa95ILjdUfNeYewNAcy37cYk+vDLvj2jsL+GeMH07HiVNbVy,iv:AGKGvT74Y29HWhwTzDJWv8Bxfaut9XtujugJe4anQic=,tag:P/c02XzO48NYWwrX4fFGYw==,type:str]
+        token_id: ENC[AES256_GCM,data:6bXHTlSaW8v/z0h5b5D6n7Lps6z2fg==,iv:c/s8s5l/cNuJtUAP+k9SUHwBp8QN6mpm5Vt57XwLsaY=,tag:TTF0SLCs4VBXu+KQzY8qpQ==,type:str]
+        token_secret: ENC[AES256_GCM,data:E2R/l9xoXyKN2tN/l9iylMiBVvKWwzlUA11gg8IFUQgBpps2,iv:AZJcO5M0ZZdpWbqaKgm82t4JqyjLkwxyF4P0Dc6g8aE=,tag:GrKaQDEBA7fmUsnA/hxbYw==,type:str]
         region: homelab
   storageClass:
     - name: proxmox-data-ext4
@@ -16,28 +15,28 @@ proxmox-csi-plugin:
       annotations:
         storageclass.kubernetes.io/is-default-class: "true"
 sops:
-  lastmodified: "2025-09-04T09:25:59Z"
-  mac: ENC[AES256_GCM,data:zTh4Xw4E+kaVEiMBHHfbOaaRJdZ0DMVXNH5YFN2EyeLbOWKRttstLDwtftkoJNjvLgXsB+p9S47HT3WP1JCi77ZjzXLHSeTuYYHDBWVEsGFMjXZYFB3ow4ULN87qU13rVXFJ7pmrJ0D2vggsq5VzuGxeMJ4A85CkRg1c7LfTzQ8=,iv:gMUIeYQhDBypk9n6v+pmvI2iJr98WL43U0ZDBDrIamA=,tag:0dXuGsU6/PbkUTQI+142Jw==,type:str]
+  lastmodified: "2025-09-04T12:31:59Z"
+  mac: ENC[AES256_GCM,data:gARCwapyJ/tVQtj0skvFAf98miOQI+1+MvSjjFqnqXsKdMKRRY+2cP1XXTNlai95w8KWu0ndxivpwnwHHQFw8iGcuR9jJ1oVxXpfMNnBN2dQ53u8gxgA7N6FpKq+3ZRrfMxBO6ixOiaSVs4Huo4/H94hqmeX+7+OUKxDOWlxHJc=,iv:gt0FOf+aTGWK2zmM6KcjHTCDnXr6O8NIptAx4SzmFOA=,tag:3pBtEGS6VIHS4y+zE3gMYQ==,type:str]
   pgp:
-    - created_at: "2025-09-04T09:25:59Z"
+    - created_at: "2025-09-04T12:31:59Z"
       enc: |-
         -----BEGIN PGP MESSAGE-----
 
-        hQIMA+/5db3erMwDAQ/+KTPz7Wl54inFqGg/TWGiuM/x9y7X22854jomoSYJak3L
-        pIAxEx7gYTmzgQGvTp2YPR9E41phSNH7JCyF5R67WZLZnv0RJeq4h/meuP8hPaoZ
-        wgXZBLkEM3pAK42NBjOOcMbqfW1GH7CX51h7CBy7JHsSqaQ1ME4TCXL+sR2hBu/O
-        v3ZlK2PcME4PuFywLO24zAnIjmNc9qjGkTXZw5RrJeIdtNQM/B7h/WuGwrGZwbh9
-        7kOfHCrcj1m8kbkHERWk53o8hdYuU/Mgdb024NVtuti0hd29ktwJlHFuG/K2167v
-        U0qCxCqgixfgNpOGRREwGl+foTA+u1CcNJhkxxyyLgTO1iXw2d0DLMqKiF/u56s+
-        VhMS5Ujmq8SjatnMT42KDt8dyu765tex+k6CzOkSvVFTl2yeZNsKOugwO+AN0rpd
-        CYF+Wu+S6UTe8+bXgwMwh/ptjQx0Jb2FCRHuV53xyLR3daEIky2ef2WyoW1a4qYb
-        fwVPXvowvjTFnfIamODwud6VtW8ddBXTS4hsGjCQjBUsx9WxbF29ebce8cXLeVRd
-        YgwTjqrV24bis2vHmAtmLXy0KMKw6nzVrO13hcJKKUP+5InIXDrUYAHsxsHVUkPF
-        Ci9EdFEvSoGU08zciQBynFq/Px4fTrBqzdn9aCH9RLR/Vtqp5nYyrBp44NSEl43S
-        XgGSDI80DpT2Xn/3/XutBMgHgOO/Z5+Pzh1CbtU4d+vIV0R3lEPZfeKeXZL8ym+c
-        iC8uneS57rWutrq8kScJIzlCfjwCVPcXqkj0M7ZRuwKle2bnr9SnY9iTa3eNIkE=
-        =3rmn
+        hQIMA+/5db3erMwDAQ//X9qwCX5HcTrDUoQj1OBium7VV5UJd1QMNHuJe8wXn2aj
+        Fm4p6Yrp5PaW+aOqwtv64y4wF7jDFumpFBE5maJfV3IDWUbQcdgG6mWLv+FdUFBi
+        fruP4BioLxd40XOjPt6QQScnbtA5gfmaaHV5MS1YVVX3dz20/TQ+kItkhdF2fY6K
+        PaeCycO8BR0qEMPDcnhmcqIzPjFHNNzLouK8eN4NnTvIu/ZnU6gZHw3Eod/IprA0
+        hVkg9PhkO+LTFPsO8HtuZlPTGAl6lKBFRSqDiyZxO6xn0EmFGaHmq84TDdtjuESo
+        hGo1OC5KouOeRv/X/KXPruQPTuYg3TYnVs4GDHLPDEYy/laRLi4Xs2Q7XKpzweJW
+        YknIwDU8lzRGuSIsI+5QI05PU+9Hvbt5nuoRAPCKY4eySoF52sgBPRf1+tLsv6kQ
+        RBrCHzVCmzpjxlMs7fOC+XrG0tCk9Cj5gblhmSqweX+T8S6AxKlcUn5tPUDyesLL
+        IrcDNB5RioaKtiIlCZRYRE8mPgahYzrCx4/hkhYQlFZXAeYlY7q2c70/v6qaGn2Q
+        rStq6Lbn2HspDOgM7nN7E4vX0Vm7BEr+cHFicLbxc+tzocgqghuUP1hbiw6pnmT6
+        nBjegjCKJs3jvijyqr4Ybz1ieHRRsDcL3TlZQOnn6R+ik4s0cSCn+y3+qdz8Ag/S
+        XgGInWtSAgX8wRpXuw24v78j6hYpRk1++qf/Mc5luUz3DXZxMnL4p4egnc7lmhNK
+        Ol+w+oQB6yPosdPorwRyIjGEVIyB3qclRkqgrDfVcYd2+F6bGnjgnMkmpLyKR0s=
+        =fnDN
         -----END PGP MESSAGE-----
       fp: EFA3A48930E2DF650369061E62D3D8BB58AD7947
-  encrypted_regex: ^(token_id|token_secret)$
+  encrypted_regex: ^(token_id|token_secret|mysql-root-password|mysql-password)$
   version: 3.10.2

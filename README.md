@@ -1,36 +1,69 @@
 # OMD Speedtest
 
-Проект для развертывания Kubernetes кластера с приложением [speedtest](https://github.com/librespeed/speedtest)
+Проект для развертывания LibreSpeed speedtest приложения в Kubernetes кластере с MySQL базой данных.
 
 ## Структура проекта
 
 ```bash
-├── docs/                   # Документация
-│   ├── proxmox-csi.md      # Настройка CSI драйвера
-│   ├── sops-setup.md       # Конфигурация SOPS
-│   └── troubleshooting.md  # Решение проблем
-├── charts/proxmox-csi/     # Helm чарт для CSI
-├── manifests/              # Kubernetes манифесты
-└── .pre-commit-config.yaml # Хуки для безопасности
+├── charts/
+│   ├── proxmox-csi/          # Helm чарт для CSI
+│   ├── metallb/              # Helm чарт для MetalLB LoadBalancer
+│   └── nginx-ingress/        # Helm чарт для Ingress Controller
+├── manifests/
+│   ├── db/                   # MySQL манифесты
+│   └── application/          # LibreSpeed манифесты
+│   └── metallb/              # MetalLB манифесты
+└── .pre-commit-config.yaml   # Pre-commit хуки
+└── .sops.yaml                # SOPS конфиг
 ```
 
 ## Быстрый старт
 
-### 1. Настройка SOPS
-
-См. подробные инструкции: [docs/sops-setup.md](docs/sops-setup.md)
-
-### 2. Подготовка CSI драйвера
-
-См. подробные инструкции: [docs/proxmox-csi.md](docs/proxmox-csi.md)
+### 1. Подготовка кластера (single-node)
 
 ```bash
-# Настройка секретов
-sops charts/proxmox-csi/values.yaml
+# Удаление control-plane taint
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
-# Установка
+# Удаление лейбла exclude-from-external-load-balancers (для работы MetalLB)
+kubectl label node omd-1 node.kubernetes.io/exclude-from-external-load-balancers-
+
+# Настройка topology labels (zone=pve-1 означает что ВМ развернута в proxmox кластере на ноде pve-1)
+kubectl label node omd-1 topology.kubernetes.io/region=homelab topology.kubernetes.io/zone=pve-1
+
+# Установка CSI драйвера Proxmox
+helm dependency update charts/proxmox-csi/
 helm install proxmox-csi ./charts/proxmox-csi \
   --values <(sops -d ./charts/proxmox-csi/values.yaml) \
   --namespace proxmox-csi \
   --create-namespace
+
+# Установка MetalLB LoadBalancer
+helm dependency update charts/metallb/
+helm install metallb ./charts/metallb \
+  --namespace metallb-system \
+  --create-namespace
+
+# Установка nginx-ingress-controller
+helm dependency update charts/nginx-ingress/
+helm install nginx-ingress ./charts/nginx-ingress \
+  --namespace ingress-nginx \
+  --create-namespace
 ```
+
+### 2. Развертывание базы данных
+
+```bash
+kubectl apply -f manifests/db/
+```
+
+### 3. Развертывание приложения
+
+```bash
+kubectl apply -f manifests/application/
+```
+
+## Доступ к приложению
+
+- **Host-based URL**: <http://speedtest.omd.itruslan.ru>
+- **Статистика**: <http://speedtest.omd.itruslan.ru/results/stats.php> (пароль: `speedtest123`)

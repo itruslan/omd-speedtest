@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: librespeed-env
+  namespace: application
+  labels:
+    app.kubernetes.io/instance: librespeed
+data:
+  MODE: frontend
+  TELEMETRY: "true"
+  ENABLE_ID_OBFUSCATION: "true"
+  REDACT_IP_ADDRESSES: "false"
+  DB_TYPE: mysql
+  DB_HOSTNAME: mysql.db
+  DB_NAME: speedtest
+  DB_PORT: "3306"
+  WEBPORT: "80"
+  IPINFO_APIKEY: ""

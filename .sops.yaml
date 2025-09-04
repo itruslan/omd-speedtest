@@ -1,5 +1,5 @@
 ---
 creation_rules:
-  - path_regex: values\.yaml$
+  - path_regex: .*(values|secret)\.yaml$
     pgp: EFA3A48930E2DF650369061E62D3D8BB58AD7947
-    encrypted_regex: ^(token_id|token_secret)$
+    encrypted_regex: ^(token_id|token_secret|mysql-root-password|mysql-password|DB_USERNAME|DB_PASSWORD|PASSWORD)$

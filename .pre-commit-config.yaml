@@ -25,11 +25,8 @@ repos:
     hooks:
       - id: markdownlint
         args: [--fix, --disable, MD013, MD033, --]
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v25.2.1
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
     hooks:
-      - id: ansible-lint
-        args: [--fix]
-        additional_dependencies:
-          - ansible
-          - jmespath
+      - id: yamllint
+        args: [--format, parsable, --strict, --config-data, "{rules: {document-start: disable}}"]

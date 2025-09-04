@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: librepeed-ingress
+  namespace: application
+  labels:
+    app.kubernetes.io/instance: librespeed
+  annotations:
+    # Disable HTTPS redirect
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # Forward real IP headers - nginx automatically adds these
+    # nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    # nginx.ingress.kubernetes.io/forwarded-for-header: "X-Forwarded-For"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: speedtest.omd.itruslan.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: librespeed
+                port:
+                  number: 80
