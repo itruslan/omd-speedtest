@@ -1,4 +1,5 @@
+---
 creation_rules:
   - path_regex: values\.yaml$
-    pgp: "EFA3A48930E2DF650369061E62D3D8BB58AD7947"
-    encrypted_regex: '^(token_id|token_secret)$'
+    pgp: EFA3A48930E2DF650369061E62D3D8BB58AD7947
+    encrypted_regex: ^(token_id|token_secret)$

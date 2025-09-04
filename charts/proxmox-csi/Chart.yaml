@@ -1,11 +1,12 @@
+---
 apiVersion: v2
 name: proxmox-csi
 description: Proxmox CSI Plugin for Kubernetes
 type: application
 version: 1.0.0
-appVersion: "0.13.0"
+appVersion: 0.13.0
 
 dependencies:
   - name: proxmox-csi-plugin
-    version: "0.3.14"
-    repository: "oci://ghcr.io/sergelogvinov/charts"
+    version: 0.3.14
+    repository: oci://ghcr.io/sergelogvinov/charts

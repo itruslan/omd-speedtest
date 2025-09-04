@@ -1,48 +1,43 @@
-# Proxmox CSI Plugin configuration
+---
 proxmox-csi-plugin:
-    config:
-        clusters:
-            - url: https://pve.itruslan.ru:8006/api2/json
-              insecure: false
-              token_id: ENC[AES256_GCM,data:ZZNFNTjhRTpts0/O5v8tIG/l+5wwGQ==,iv:OoBx4j9s2UwPcN6X/SXAifVy/vK+yZ/eD/bzr8Ct/uI=,tag:ALaz6zzBJVnLzanN7NS1zg==,type:str]
-              token_secret: ENC[AES256_GCM,data:drcZ4WkdFVnZd78vT9vkduvmCfVR4G4Zmi8Wkcv3pJy9BF92,iv:NVvemWs5tMMVA+JjMgQG7JuUAobghRI4CrlmWinjOMA=,tag:9T6MHCB3l/iyrqYI4mqRGw==,type:str]
-              region: homelab
-    storageClass:
-        - name: proxmox-data-ext4
-          storage: data-2
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-          cache: writethrough
-          annotations:
-            storageclass.kubernetes.io/is-default-class: "true"
-    nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
-    tolerations:
-        - key: node-role.kubernetes.io/control-plane
-          effect: NoSchedule
+  config:
+    clusters:
+      - url: https://pve.itruslan.ru:8006/api2/json
+        insecure: false
+        token_id: ENC[AES256_GCM,data:a3LEptDX1GDUp+aLUkwFKBeL1rHfpw==,iv:jmWW5Ufcfmc6JyRDbbQRYN3TmL0FQT0nv4i/QYjjph4=,tag:rKfv/NAUB6he4MDEUER6UA==,type:str]
+        token_secret: ENC[AES256_GCM,data:wa95ILjdUfNeYewNAcy37cYk+vDLvj2jsL+GeMH07HiVNbVy,iv:AGKGvT74Y29HWhwTzDJWv8Bxfaut9XtujugJe4anQic=,tag:P/c02XzO48NYWwrX4fFGYw==,type:str]
+        region: homelab
+  storageClass:
+    - name: proxmox-data-ext4
+      storage: data-2
+      reclaimPolicy: Delete
+      allowVolumeExpansion: true
+      cache: writethrough
+      annotations:
+        storageclass.kubernetes.io/is-default-class: "true"
 sops:
-    lastmodified: "2025-09-04T07:12:52Z"
-    mac: ENC[AES256_GCM,data:jz/Wlo6OUjofOAhE66sRSgYNcChSpHSCgPzSJUaS3SFddUsDEnxdztX7f9XkAFc4gJY+eTEAGGh42ish9s37hqOyoNhYsUWhevUqn9BNmYtup3vPnjxdXXWeefoPvW+n9P8j7nBJo/31U6WyhGG0tPIHFGIIsbddN0/polvJL3E=,iv:9gl9E66vYEyyfF675ty9PMkbC5wGWXzf3M5oDg20hcA=,tag:Oa3E2AENomvpHd1J0WaUvw==,type:str]
-    pgp:
-        - created_at: "2025-09-04T07:12:52Z"
-          enc: |-
-            -----BEGIN PGP MESSAGE-----
+  lastmodified: "2025-09-04T09:25:59Z"
+  mac: ENC[AES256_GCM,data:zTh4Xw4E+kaVEiMBHHfbOaaRJdZ0DMVXNH5YFN2EyeLbOWKRttstLDwtftkoJNjvLgXsB+p9S47HT3WP1JCi77ZjzXLHSeTuYYHDBWVEsGFMjXZYFB3ow4ULN87qU13rVXFJ7pmrJ0D2vggsq5VzuGxeMJ4A85CkRg1c7LfTzQ8=,iv:gMUIeYQhDBypk9n6v+pmvI2iJr98WL43U0ZDBDrIamA=,tag:0dXuGsU6/PbkUTQI+142Jw==,type:str]
+  pgp:
+    - created_at: "2025-09-04T09:25:59Z"
+      enc: |-
+        -----BEGIN PGP MESSAGE-----
 
-            hQIMA+/5db3erMwDARAAnH1S/LDRrCKqasFL7+vUaAEKSmmdSP/YXNh3GiukOSOg
-            DJ0nJo7VZJi7KyohJZ/dXwFV9utuf9W51ZZ3LpwyC7Ggn84jUii6KeLggjLCSzUt
-            //0T/jE5zNcNMobFCy0byYkC2CQvZczQj2m7wN3IMOwM8zaqaLsDb8IWnfQATZfO
-            SZcIDJXRxKL9oWETk3e/CGrwNO8oy86YV/VIWeE7gxDzC3B07Lq5j0x5v8ozjjpH
-            YiC16gvnqVpRmVeCb7rVzp0pooFU7Bdk5oCQFM3cLNWG+JP2kKQCrtkbgMFNe+U1
-            +A6RljbORKfW1ENf52JQlDWP7nYvWGx9XH28TwE3h/9997n4i9G7wjFWyCh9/Nc7
-            pyPFQekVAl+9gpPZZJOQlZWj2klVnK/GSTzEmEMVTeB9nckUKk4dLst5qxaSW2eF
-            v9yBF3eZjCKvaWVIwGt8oXgMZrdAokFhCTmMDhh/x7myc/DlkhLATC/LEp8MZb5y
-            gA5aOieNUTjIEYcLg60qsJvmwGZyYehGT1VBK0BKZreBSqhXqlvg6zo9cao1+35k
-            LDsIksKdvjmVD5NRu04Qy3ImOsGQVgnc+NRlB3QZCKp28UKnx7nfvWIoq0zs8mjE
-            5jX4uFNOUkcd4xy7XoX1iz+6cuIiOYPDvdxJ+uLhqv0tOBDva/oOQQPksobYzKXS
-            XAG2BmyV+zhCtQu9UuVWGaEHsX/UKpQU75B94Tr2YnLPwI6pzr2ftN2Bi3/q256g
-            ORbyfIWD1jcbUDV2veRbfnQLLNE3A/r/ZiSX2N7OzmrLpxdpBM6q2zPC4scg
-            =RypT
-            -----END PGP MESSAGE-----
-          fp: EFA3A48930E2DF650369061E62D3D8BB58AD7947
-    encrypted_regex: ^(token_id|token_secret)$
-    version: 3.10.2
+        hQIMA+/5db3erMwDAQ/+KTPz7Wl54inFqGg/TWGiuM/x9y7X22854jomoSYJak3L
+        pIAxEx7gYTmzgQGvTp2YPR9E41phSNH7JCyF5R67WZLZnv0RJeq4h/meuP8hPaoZ
+        wgXZBLkEM3pAK42NBjOOcMbqfW1GH7CX51h7CBy7JHsSqaQ1ME4TCXL+sR2hBu/O
+        v3ZlK2PcME4PuFywLO24zAnIjmNc9qjGkTXZw5RrJeIdtNQM/B7h/WuGwrGZwbh9
+        7kOfHCrcj1m8kbkHERWk53o8hdYuU/Mgdb024NVtuti0hd29ktwJlHFuG/K2167v
+        U0qCxCqgixfgNpOGRREwGl+foTA+u1CcNJhkxxyyLgTO1iXw2d0DLMqKiF/u56s+
+        VhMS5Ujmq8SjatnMT42KDt8dyu765tex+k6CzOkSvVFTl2yeZNsKOugwO+AN0rpd
+        CYF+Wu+S6UTe8+bXgwMwh/ptjQx0Jb2FCRHuV53xyLR3daEIky2ef2WyoW1a4qYb
+        fwVPXvowvjTFnfIamODwud6VtW8ddBXTS4hsGjCQjBUsx9WxbF29ebce8cXLeVRd
+        YgwTjqrV24bis2vHmAtmLXy0KMKw6nzVrO13hcJKKUP+5InIXDrUYAHsxsHVUkPF
+        Ci9EdFEvSoGU08zciQBynFq/Px4fTrBqzdn9aCH9RLR/Vtqp5nYyrBp44NSEl43S
+        XgGSDI80DpT2Xn/3/XutBMgHgOO/Z5+Pzh1CbtU4d+vIV0R3lEPZfeKeXZL8ym+c
+        iC8uneS57rWutrq8kScJIzlCfjwCVPcXqkj0M7ZRuwKle2bnr9SnY9iTa3eNIkE=
+        =3rmn
+        -----END PGP MESSAGE-----
+      fp: EFA3A48930E2DF650369061E62D3D8BB58AD7947
+  encrypted_regex: ^(token_id|token_secret)$
+  version: 3.10.2
