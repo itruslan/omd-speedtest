@@ -54,13 +54,27 @@ helm install nginx-ingress ./charts/nginx-ingress \
 ### 2. Развертывание базы данных
 
 ```bash
-kubectl apply -f manifests/db/
+kubectl apply \
+-f manifests/db/00-mysql-namespace.yaml \
+-f manifests/db/mysql-configmap.yaml \
+-f manifests/db/mysql-headless.yaml \
+-f manifests/db/mysql-pvc.yaml \
+-f manifests/db/mysql-service.yaml \
+-f manifests/db/mysql.yaml
+sops -d manifests/db/mysql-secret.yaml | kubectl apply -f -
 ```
 
 ### 3. Развертывание приложения
 
 ```bash
-kubectl apply -f manifests/application/
+kubectl apply \
+-f manifests/application/00-librespeed-namespace.yaml \
+-f manifests/application/librespeed-env.yaml \
+-f manifests/application/librespeed-ingress.yaml \
+-f manifests/application/librespeed-servers.yaml \
+-f manifests/application/librespeed-service.yaml \
+-f manifests/application/librespeed.yaml
+sops -d manifests/application/librespeed-secret.yaml | kubectl apply -f -
 ```
 
 ## Доступ к приложению
