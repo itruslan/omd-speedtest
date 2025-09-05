@@ -1,12 +1,15 @@
 ---
 ingress-nginx:
   controller:
+    kind: DaemonSet
     service:
       type: LoadBalancer
+      externalTrafficPolicy: Local
     config:
       use-forwarded-headers: "true"
       compute-full-forwarded-for: "true"
       use-proxy-protocol: "false"
+      proxy-real-ip-cidr: "0.0.0.0/0"
     resources:
       requests:
         cpu: 100m
