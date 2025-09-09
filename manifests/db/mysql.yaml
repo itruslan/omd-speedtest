@@ -9,6 +9,8 @@ metadata:
 spec:
   serviceName: mysql-headless
   replicas: 1
+  updateStrategy:
+    type: OnDelete
   selector:
     matchLabels:
       app: db
@@ -43,6 +45,13 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
           readinessProbe:
             exec:
               command:
@@ -68,6 +77,20 @@ spec:
                 - -p${MYSQL_ROOT_PASSWORD}
             initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 5
+          startupProbe:
+            exec:
+              command:
+                - mysqladmin
+                - ping
+                - -h
+                - localhost
+                - -u
+                - root
+                - -p${MYSQL_ROOT_PASSWORD}
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 10
             timeoutSeconds: 5
       volumes:
         - name: mysql-persistent-storage
